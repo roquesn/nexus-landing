@@ -134,7 +134,6 @@ main{display:flex;flex-direction:column;gap:clamp(56px,8vw,104px);padding-block:
 .mosaic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0}
 .ph-car{grid-column:1 / -1;aspect-ratio:16 / 9}
 .ph-moto,.ph-truck{aspect-ratio:4 / 3}
-.ph-truck img{object-position:58% 50%}
 @media (min-width:980px){
   .hero{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)}
   .cta-row .btn{flex:0 0 auto}
@@ -274,6 +273,7 @@ img.avatar{display:block;object-fit:cover;border-style:solid}
 .faq summary::after{content:"+";flex:none;font:400 1.6rem/1 var(--f-body);color:var(--blue-text);transition:transform .2s ease}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{color:var(--muted);padding-bottom:19px;max-width:62ch}
+.faq details a{color:var(--blue-text);font-weight:600}
 @media (min-width:900px){.faq{grid-template-columns:.8fr 1.2fr;align-items:start}}
 
 /* ---------- fechamento ---------- */
@@ -324,6 +324,8 @@ document.documentElement.lang='pt-BR';
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
     <symbol id="i-compare" viewBox="0 0 24 24"><path d="M3.5 6h7M3.5 12h7M3.5 18h7M14.5 6l2 2L20.5 4M14.5 12l2 2 4-4M14.5 18l2 2 4-4"/></symbol>
     <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="5" r="2.5"/><path d="M8 18h6a3.5 3.5 0 0 0 0-7h-4a3 3 0 0 1 0-6h6"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V5a1.5 1.5 0 0 1 1.5-1.5h7.3a1.5 1.5 0 0 1 1 .4l7 7a1.5 1.5 0 0 1 0 2.2l-7.2 7.2a1.5 1.5 0 0 1-2.200 0l-7-7a1.5 1.5 0 0 1-.4-1z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.500 2.800v5.700c0 4.500-3 7.800-7.500 9.500-4.500-1.700-7.500-5-7.500-9.500V5.800z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></symbol>
     <symbol id="nx-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="#1546E8"/><path d="M15 33.5V15l18 18V14.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/><circle cx="33" cy="14" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/></symbol>
     <symbol id="nx-word" viewBox="-3 -3 127 30"><path d="M0 24V0l17 24V0M43 0H26v24h17M26 12h14M52 0l17 24M69 0L52 24M78 0v15.5a8.5 8.5 0 0 0 17 0V0M120 4.5C118 1.5 115.5 0 112 0c-4.5 0-7.5 2.6-7.5 6.3 0 8.4 16.5 3.6 16.5 11.6 0 3.7-3.4 6.1-8 6.1-3.8 0-6.8-1.6-8.5-4.5"/></symbol>
@@ -358,7 +360,7 @@ document.documentElement.lang='pt-BR';
       <div class="hero-text">
         <p class="eyebrow">Consultoria em proteção veicular</p>
         <h1>Proteção para carro, moto e caminhão em <em>uma só cotação</em>.</h1>
-        <p class="lead">A Nexus cota o seu veículo na Premium Clube, na Autobem Brasil, no Grupo Certo e em outras parceiras e mostra qual plano vale a pena para você.</p>
+        <p class="lead">A Nexus trabalha com várias empresas de proteção veicular. Com mais opções para comparar, encontra o melhor preço para o seu veículo.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">
             <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Fazer cotação no WhatsApp
@@ -367,14 +369,14 @@ document.documentElement.lang='pt-BR';
         </div>
         <ul class="hero-points">
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotação gratuita</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Várias parceiras</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Melhor preço entre as parceiras</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Atendimento pelo WhatsApp</li>
         </ul>
       </div>
       <div class="mosaic">
         <figure class="ph ph-car"><img src="https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=1000" srcset="https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=1000 1000w, https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=1400 1400w" sizes="(min-width:980px) 620px, 100vw" alt="Carro azul em uma estrada" decoding="async"><figcaption>Carros</figcaption></figure>
-        <figure class="ph ph-moto"><img src="https://images.unsplash.com/photo-1683183191390-c6e1a70ea99e?auto=format&amp;fit=crop&amp;q=70&amp;w=640" srcset="https://images.unsplash.com/photo-1683183191390-c6e1a70ea99e?auto=format&amp;fit=crop&amp;q=70&amp;w=400 400w, https://images.unsplash.com/photo-1683183191390-c6e1a70ea99e?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1683183191390-c6e1a70ea99e?auto=format&amp;fit=crop&amp;q=70&amp;w=900 900w" sizes="(min-width:980px) 310px, 50vw" alt="Motociclista com a moto parada em uma rua" decoding="async"><figcaption>Motos</figcaption></figure>
-        <figure class="ph ph-truck"><img src="https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31?auto=format&amp;fit=crop&amp;q=70&amp;w=640" srcset="https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31?auto=format&amp;fit=crop&amp;q=70&amp;w=400 400w, https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1790364757239-2bd1ab3b5f31?auto=format&amp;fit=crop&amp;q=70&amp;w=900 900w" sizes="(min-width:980px) 310px, 50vw" alt="Caminhão azul em um posto de combustível" decoding="async"><figcaption>Caminhões</figcaption></figure>
+        <figure class="ph ph-moto"><img src="https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=640" srcset="https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=400 400w, https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=900 900w" sizes="(min-width:980px) 310px, 50vw" alt="Motociclista pilotando em uma estrada" decoding="async"><figcaption>Motos</figcaption></figure>
+        <figure class="ph ph-truck"><img src="https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=640" srcset="https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=400 400w, https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=900 900w" sizes="(min-width:980px) 310px, 50vw" alt="Caminhão branco rodando em uma estrada" decoding="async"><figcaption>Caminhões</figcaption></figure>
       </div>
     </section>
 
@@ -422,17 +424,21 @@ document.documentElement.lang='pt-BR';
   <section class="about" id="sobre">
     <figure class="ph ph-about"><img src="https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1000" srcset="https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1000 1000w, https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1400 1400w" sizes="(min-width:900px) 520px, 100vw" alt="Pai e filhas tirando uma selfie ao lado do carro" loading="lazy" decoding="async"></figure>
     <div class="about-body">
-      <p class="eyebrow">Como a Nexus trabalha</p>
-      <h2 class="h2">Um consultor que compara as proteções por você.</h2>
-      <p class="lead">A Nexus não tem um plano próprio. Trabalhamos com várias empresas de proteção veicular e apresentamos as opções de cada uma, para você decidir com clareza.</p>
+      <p class="eyebrow">Por que cotar com a Nexus</p>
+      <h2 class="h2">Mais parceiras para comparar, melhor preço para você.</h2>
+      <p class="lead">Uma empresa sozinha só tem o próprio preço para oferecer. A Nexus cota o seu veículo em várias parceiras, compara plano por plano e mostra a opção que sai mais em conta com a cobertura que você precisa.</p>
       <ul class="about-list">
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-compare"/></svg>
-          <div><h3>Várias parceiras, um atendimento</h3><p>Você não precisa pedir cotação de empresa em empresa. O consultor faz isso e traz as opções lado a lado.</p></div>
+          <div><h3>Portfólio amplo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e outras parceiras, com planos para carro, moto e caminhão.</p></div>
         </li>
         <li>
-          <svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>
-          <div><h3>Indicação pelo seu perfil</h3><p>O veículo, o uso e o orçamento mudam qual plano compensa. A indicação leva os três em conta.</p></div>
+          <svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>
+          <div><h3>O melhor preço entre as opções</h3><p>O mesmo veículo pode ter valores bem diferentes de uma parceira para outra. O consultor compara e mostra onde sai mais em conta.</p></div>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+          <div><h3>Parceiras cadastradas na Susep</h3><p>A Nexus trabalha com associações cadastradas na Susep, o órgão federal que supervisiona o setor.</p></div>
         </li>
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>
@@ -623,6 +629,10 @@ document.documentElement.lang='pt-BR';
       <details>
         <summary>A Nexus é a empresa que protege o meu veículo?</summary>
         <p>Não. A Nexus faz a consultoria e a venda. A proteção é prestada pela parceira que você escolher, e a adesão é feita com ela. A Nexus acompanha você na cotação e na contratação.</p>
+      </details>
+      <details>
+        <summary>Proteção veicular é confiável? As parceiras são regularizadas?</summary>
+        <p>Desde 2025, a Lei Complementar 213 colocou as associações de proteção veicular sob supervisão da Susep, o órgão federal que fiscaliza o setor de seguros. A Nexus trabalha com parceiras cadastradas na Susep. Antes de você assinar, o consultor informa o CNPJ e o regulamento da parceira, e você pode conferir a situação dela na <a href="https://www2.susep.gov.br/safe/autorizacoes/app/" target="_blank" rel="noopener">consulta pública da Susep</a>.</p>
       </details>
       <details>
         <summary>Proteção veicular é a mesma coisa que seguro?</summary>

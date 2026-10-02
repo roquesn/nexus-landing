@@ -18,8 +18,8 @@ As fotos da página são de banco de imagens gratuito (Unsplash, licença de uso
 | Onde aparece | Foto | Autor no Unsplash |
 | --- | --- | --- |
 | Topo, "Carros" | `photo-1651446404130-104e68e2f39a` | Russian Supreme |
-| Topo, "Motos" | `photo-1683183191390-c6e1a70ea99e` | LouisMoto |
-| Topo, "Caminhões" | `photo-1790364757239-2bd1ab3b5f31` | Arlind Photography |
+| Topo, "Motos" | `photo-1598548841213-9cdbcdf8ec47` | Gerhard Siebert |
+| Topo, "Caminhões" | `photo-1670509295484-df0c2512fec4` | Zieben VH |
 | Como a Nexus trabalha | `photo-1756142007128-f431ede241cc` | Samsung Memory US |
 | Seja consultor | `photo-1758521961483-30f5908b9c93` | Vitaly Gariev |
 | Fechamento | `photo-1760068670115-6d4e415b0c7a` | Leonardo Iribe |
