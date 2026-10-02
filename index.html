@@ -276,6 +276,13 @@ img.avatar{display:block;object-fit:cover;border-style:solid}
 .faq details a{color:var(--blue-text);font-weight:600}
 @media (min-width:900px){.faq{grid-template-columns:.8fr 1.2fr;align-items:start}}
 
+/* ---------- loja ---------- */
+.store{display:grid;gap:16px;align-items:center;padding:clamp(20px,3.5vw,32px);border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface)}
+.store>.icon{width:34px;height:34px;color:var(--blue-text)}
+.store-text{display:flex;flex-direction:column;gap:8px;min-width:0}
+.store address{font-style:normal;color:var(--muted);line-height:1.55}
+@media (min-width:760px){.store{grid-template-columns:auto minmax(0,1fr) auto;gap:24px}}
+
 /* ---------- fechamento ---------- */
 .closing{display:grid;overflow:hidden;background:var(--blue);color:var(--on-blue);border-radius:var(--r-lg)}
 .closing :focus-visible{outline-color:var(--on-blue)}
@@ -326,6 +333,7 @@ document.documentElement.lang='pt-BR';
     <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="5" r="2.5"/><path d="M8 18h6a3.5 3.5 0 0 0 0-7h-4a3 3 0 0 1 0-6h6"/></symbol>
     <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V5a1.5 1.5 0 0 1 1.5-1.5h7.3a1.5 1.5 0 0 1 1 .4l7 7a1.5 1.5 0 0 1 0 2.2l-7.2 7.2a1.5 1.5 0 0 1-2.200 0l-7-7a1.5 1.5 0 0 1-.4-1z"/><circle cx="8" cy="8" r="1.4"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.500 2.800v5.700c0 4.500-3 7.800-7.500 9.500-4.500-1.700-7.500-5-7.500-9.500V5.800z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.500s7-6.200 7-11.500a7 7 0 0 0-14 0c0 5.300 7 11.500 7 11.500z"/><circle cx="12" cy="10" r="2.600"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></symbol>
     <symbol id="nx-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="#1546E8"/><path d="M15 33.5V15l18 18V14.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/><circle cx="33" cy="14" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/></symbol>
     <symbol id="nx-word" viewBox="-3 -3 127 30"><path d="M0 24V0l17 24V0M43 0H26v24h17M26 12h14M52 0l17 24M69 0L52 24M78 0v15.5a8.5 8.5 0 0 0 17 0V0M120 4.5C118 1.5 115.5 0 112 0c-4.5 0-7.5 2.6-7.5 6.3 0 8.4 16.5 3.6 16.5 11.6 0 3.7-3.4 6.1-8 6.1-3.8 0-6.8-1.6-8.5-4.5"/></symbol>
@@ -442,7 +450,7 @@ document.documentElement.lang='pt-BR';
         </li>
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>
-          <div><h3>Acompanhamento até a adesão</h3><p>Da cotação à vistoria e ao contrato com a parceira, o mesmo consultor fica com você.</p></div>
+          <div><h3>Acompanhamento antes e depois da venda</h3><p>O mesmo consultor cuida da cotação, da vistoria e do contrato. Depois, sempre que você precisar, ele fala com a parceira por você.</p></div>
         </li>
       </ul>
     </div>
@@ -653,6 +661,17 @@ document.documentElement.lang='pt-BR';
     </div>
   </section>
 
+  <!-- LOJA -->
+  <section class="store" id="loja">
+    <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+    <div class="store-text">
+      <p class="eyebrow">Loja em Uberlândia</p>
+      <h2 class="h3">Faça uma visita à nossa loja</h2>
+      <address>Av. Rondon Pacheco, 2300, sala 36, piso 1<br>Saraiva, Uberlândia - MG, 38408-404</address>
+    </div>
+    <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Rondon+Pacheco%2C+2300+-+Saraiva%2C+Uberl%C3%A2ndia+-+MG%2C+38408-404" target="_blank" rel="noopener">Como chegar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </section>
+
   <!-- FECHAMENTO -->
   <section class="closing" id="contato">
     <div class="closing-body">
@@ -679,7 +698,8 @@ document.documentElement.lang='pt-BR';
       <svg class="brand-mark" aria-hidden="true"><use href="#nx-mark"/></svg>
       <svg class="brand-word" aria-hidden="true"><use href="#nx-word"/></svg>
     </a>
-    <p>A Nexus atua como consultoria e intermediação comercial. A proteção veicular é prestada pelas parceiras, conforme o regulamento de cada uma, e não é seguro.</p>
+    <p>A Nexus reúne empresas de proteção veicular cadastradas na Susep em um só atendimento. Você compara, escolhe a melhor proposta, e o consultor da Nexus fica ao seu lado da cotação ao pós-venda, em qualquer situação.</p>
+    <p>Av. Rondon Pacheco, 2300, sala 36, piso 1, Saraiva, Uberlândia - MG, 38408-404</p>
     <p>© 2026 Nexus Proteção Veicular · WhatsApp (34) 99300-8884</p>
   </div>
 </footer>
