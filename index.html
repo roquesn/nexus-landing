@@ -28,7 +28,8 @@
   --focus:#0B1226; --shadow:0 16px 36px -20px rgba(11,18,38,.4);
   /* sobre azul e sobre foto: iguais nos dois temas */
   --on-blue:#FFFFFF; --on-blue-muted:#D5DFFF; --on-blue-line:rgba(255,255,255,.42); --on-blue-glass:rgba(255,255,255,.12);
-  --logo-bg:#FFFFFF; --logo-ink:#55607A; --logo-line:#DDE3EF;
+  --logo-bg:#FFFFFF; --logo-ink:#55607A; --logo-line:#DDE3EF; --logo-name:#0B1226;
+  --bar-bg:#0B2A9C; --on-bar:#FFFFFF; --on-bar-line:rgba(255,255,255,.42);
   --field-bg:#FFFFFF; --field-ink:#0B1226; --field-ph:#6A7590;
   --photo-bg:#131D45; --photo-bg-2:#0B1226; --on-photo:#FFFFFF; --scrim:rgba(5,9,25,.8); --scrim-0:rgba(5,9,25,0);
   --f-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
@@ -93,6 +94,17 @@ img{max-width:100%}
 .ph{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r-md);background:linear-gradient(135deg,var(--photo-bg),var(--photo-bg-2))}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ph figcaption{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:36px 16px 13px;background:linear-gradient(to top,var(--scrim),var(--scrim-0));color:var(--on-photo);font:700 1rem/1.2 var(--f-body)}
+
+/* ---------- faixa de apresentação ---------- */
+.bar{background:var(--bar-bg);color:var(--on-bar);font-size:.8125rem}
+.bar :focus-visible{outline-color:var(--on-bar)}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
+.bar-note{display:none;opacity:.9}
+.switch{display:inline-flex;align-items:center;gap:8px;margin-left:auto}
+.switch span{opacity:.85}
+.switch a{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--on-bar-line);font-weight:700;line-height:1;text-decoration:none}
+.switch a.on{background:var(--on-bar);border-color:var(--on-bar);color:var(--bar-bg)}
+@media (min-width:720px){.bar-note{display:block}}
 
 /* ---------- topo ---------- */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -176,7 +188,7 @@ main{display:flex;flex-direction:column;gap:clamp(56px,8vw,104px);padding-block:
 .partners li{display:grid;place-items:center;min-height:124px;padding:18px 16px;background:var(--logo-bg);color:var(--logo-ink)}
 .partners img{display:block;width:auto;height:auto;max-width:min(100%,190px);max-height:64px}
 .partners img.sq{max-height:92px}
-.partners li.more{font-weight:600;font-size:.95rem;text-align:center}
+.partners li.name{font-family:var(--f-display);font-stretch:104%;font-weight:800;font-size:1.45rem;letter-spacing:-.015em;color:var(--logo-name)}
 @media (min-width:760px){.partners ul{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* ---------- sobre ---------- */
@@ -340,6 +352,18 @@ document.documentElement.lang='pt-BR';
   </defs>
 </svg>
 
+<!-- FAIXA DE APRESENTAÇÃO: alterna entre as duas opções de layout. Apagar quando a família escolher. -->
+<div class="bar">
+  <div class="wrap bar-in">
+    <span class="bar-note">Apresentação: compare as duas opções de layout</span>
+    <nav class="switch" aria-label="Opções de layout">
+      <span>Layout</span>
+      <a class="on" aria-current="page" href="index.html">Opção 1</a>
+      <a href="opcao-2.html">Opção 2</a>
+    </nav>
+  </div>
+</div>
+
 <header class="top">
   <div class="wrap top-in">
     <a class="brand" href="#inicio" aria-label="Nexus, início">
@@ -424,7 +448,7 @@ document.documentElement.lang='pt-BR';
       <li><img src="assets/parceiras/premium-clube.png" alt="Premium Clube" width="640" height="148" loading="lazy"></li>
       <li><img src="assets/parceiras/autobem-brasil.png" alt="Autobem Brasil" width="640" height="197" loading="lazy"></li>
       <li><img class="sq" src="assets/parceiras/grupo-certo.png" alt="Grupo Certo Proteção Veicular" width="150" height="150" loading="lazy"></li>
-      <li class="more">e outras parceiras</li>
+      <li class="name">Coonecta</li>
     </ul>
   </section>
 
@@ -438,7 +462,7 @@ document.documentElement.lang='pt-BR';
       <ul class="about-list">
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-compare"/></svg>
-          <div><h3>Portfólio amplo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e outras parceiras, com planos para carro, moto e caminhão.</p></div>
+          <div><h3>Portfólio amplo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e Coonecta, com planos para carro, moto e caminhão.</p></div>
         </li>
         <li>
           <svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>
@@ -587,7 +611,7 @@ document.documentElement.lang='pt-BR';
       <figure class="ph ph-seller"><img src="https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1000" srcset="https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1000 1000w, https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1400 1400w" sizes="(min-width:900px) 520px, 100vw" alt="Homem sorrindo enquanto usa o celular dentro do carro" loading="lazy" decoding="async"></figure>
     </div>
     <ul class="perks">
-      <li><h3>Portfólio completo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e outras parceiras para oferecer.</p></li>
+      <li><h3>Portfólio completo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e Coonecta para oferecer.</p></li>
       <li><h3>Comissão por venda</h3><p>Sua renda cresce com o número de adesões que você fecha.</p></li>
       <li><h3>Suporte do time Nexus</h3><p>Ajuda para cotar, tirar dúvidas e fechar cada proposta.</p></li>
       <li><h3>Trabalho pelo celular</h3><p>Atenda seus clientes de onde estiver, no seu horário.</p></li>

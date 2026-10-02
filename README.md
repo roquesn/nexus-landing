@@ -4,7 +4,9 @@ Página única da Nexus: apresenta a empresa, chama o cliente para cotar pelo Wh
 
 ## Arquivos
 
-- `index.html` — a página inteira (HTML, CSS e JavaScript no mesmo arquivo).
+- `index.html` — opção 1 de layout (HTML, CSS e JavaScript no mesmo arquivo).
+- `opcao-2.html` — opção 2 de layout, com a mesma informação em outro visual.
+- `assets/parceiras/` — logos das parceiras.
 - `assets/favicon.svg` — ícone da aba do navegador.
 - `assets/nexus-simbolo.svg` — símbolo do logo (quadrado azul com o N).
 - `assets/nexus-logo-claro.svg` / `nexus-logo-escuro.svg` — logo completo para fundo claro e fundo escuro.
@@ -36,6 +38,17 @@ As seções "Depoimentos de clientes" e "Depoimentos de colaboradores" estão co
 4. Se tiver foto, troque o `<span class="avatar">…</span>` por `<img class="avatar" src="assets/img/nome.jpg" alt="">`.
 
 Quando todos os cartões forem reais, apague também o aviso "Estes cartões são modelos…" de cada seção. Publique só depoimentos de pessoas reais e com autorização delas.
+
+## Duas opções de layout
+
+As duas páginas estão no ar ao mesmo tempo para a família comparar. A faixa azul no alto de cada uma ("Layout: Opção 1 | Opção 2") alterna entre elas.
+
+Quando a escolha for feita:
+
+- **Se ficar a opção 1:** apague o bloco `<div class="bar">…</div>` do `index.html` e o arquivo `opcao-2.html`.
+- **Se ficar a opção 2:** apague o `index.html`, renomeie `opcao-2.html` para `index.html` e apague, dentro dele, o `<nav class="switch">…</nav>`.
+
+Enquanto as duas existirem, qualquer mudança de texto precisa ser feita nos dois arquivos.
 
 ## O que editar com mais frequência
 

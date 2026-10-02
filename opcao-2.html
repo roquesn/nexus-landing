@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A Nexus compara planos de proteção veicular de várias parceiras para carro, moto e caminhão e indica o melhor para você. Faça sua cotação pelo WhatsApp.">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#05070C" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Nexus Proteção Veicular">
+<meta property="og:description" content="A Nexus compara planos de proteção veicular de várias parceiras para carro, moto e caminhão e indica o melhor para você. Faça sua cotação pelo WhatsApp.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Nexus Proteção Veicular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Opção 2. Layout: cabeçalho sobre um hero de foto com véu azul, texto à esquerda
+   e cartão de cotação à direita; depois seções de largura total que alternam
+   branco e azul cheio, com títulos centralizados e cartões arredondados. */
+:root{
+  --bg:#FFFFFF; --bg-2:#F4F6FB; --surface:#FFFFFF; --ink:#0B1226; --muted:#55607A; --line:#E1E6F0;
+  --blue:#1546E8; --blue-hover:#0F38C2; --blue-text:#1546E8; --blue-soft:#E8EEFF;
+  --focus:#0B1226; --shadow:0 14px 34px -18px rgba(11,18,38,.28); --hdr:rgba(255,255,255,.93);
+  /* iguais nos dois temas */
+  --brand:#1546E8; --brand-deep:#0B2A9C; --on-brand:#FFFFFF; --on-brand-muted:#D5DFFF;
+  --on-brand-line:rgba(255,255,255,.42); --on-brand-glass:rgba(255,255,255,.12);
+  --veil-a:rgba(8,24,104,.9); --veil-b:rgba(21,70,232,.5);
+  --foot:#070B1A; --on-foot:#FFFFFF; --on-foot-muted:#A9B4D0; --foot-line:#1C2440;
+  --logo-bg:#FFFFFF; --logo-ink:#0B1226;
+  --photo-bg:#131D45; --photo-bg-2:#0B1226;
+  --f-display:"Outfit","Trebuchet MS","Segoe UI",Arial,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --r-card:18px; --r-in:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#05070C; --bg-2:#0A0E17; --surface:#10151F; --ink:#F3F6FF; --muted:#9AA6C2; --line:#1E2637;
+    --blue:#2F66F5; --blue-hover:#4B7CFF; --blue-text:#8AABFF; --blue-soft:#0F1A3C;
+    --focus:#FFFFFF; --shadow:0 14px 34px -18px rgba(0,0,0,.9); --hdr:rgba(5,7,12,.92);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#05070C; --bg-2:#0A0E17; --surface:#10151F; --ink:#F3F6FF; --muted:#9AA6C2; --line:#1E2637;
+  --blue:#2F66F5; --blue-hover:#4B7CFF; --blue-text:#8AABFF; --blue-soft:#0F1A3C;
+  --focus:#FFFFFF; --shadow:0 14px 34px -18px rgba(0,0,0,.9); --hdr:rgba(5,7,12,.92);
+  color-scheme:dark;
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,p,ul,ol,figure,address{margin:0;padding:0}
+ul,ol{list-style:none}
+address{font-style:normal}
+a{color:inherit}
+svg{display:block}
+img{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+.icon{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+[id]{scroll-margin-top:92px}
+
+/* ---------- tipografia ---------- */
+.eyebrow{font:700 .78rem/1.3 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--blue-text)}
+.h2{font:700 clamp(1.7rem,3.6vw,2.6rem)/1.12 var(--f-display);letter-spacing:-.015em;text-wrap:balance}
+.h3{font:700 clamp(1.3rem,2.4vw,1.7rem)/1.15 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);font-size:clamp(1rem,1.4vw,1.1rem);line-height:1.6}
+.note{color:var(--muted);font-size:.875rem}
+.pill{display:inline-flex;align-items:center;align-self:flex-start;min-height:32px;padding:0 14px;border-radius:999px;border:1.5px solid currentColor;font:700 .78rem/1 var(--f-body);letter-spacing:.02em}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;border:1.5px solid transparent;font:700 1rem/1.15 var(--f-body);text-align:center;text-decoration:none;cursor:pointer;transition:transform .16s ease,background-color .16s ease,border-color .16s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn .icon{width:20px;height:20px;stroke-width:2.1}
+.btn-blue{background:var(--blue);color:var(--on-brand)}
+.btn-blue:hover{background:var(--blue-hover)}
+.btn-white{background:var(--on-brand);color:var(--brand)}
+.btn-line{border-color:currentColor}
+.btn-sm{min-height:44px;padding:0 18px;font-size:.9375rem}
+
+/* ---------- faixa de cima ---------- */
+.bar{background:var(--brand-deep);color:var(--on-brand);font-size:.8125rem}
+.bar :focus-visible{outline-color:var(--on-brand)}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
+.bar-note{display:none;opacity:.92}
+.switch{display:inline-flex;align-items:center;gap:8px;margin-left:auto}
+.switch span{opacity:.85}
+.switch a{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--on-brand-line);font-weight:700;line-height:1;text-decoration:none}
+.switch a.on{background:var(--on-brand);border-color:var(--on-brand);color:var(--brand-deep)}
+@media (min-width:860px){.bar-note{display:block}}
+
+/* ---------- cabeçalho ---------- */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hdr);color:var(--ink);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background-color .2s ease,color .2s ease,box-shadow .2s ease}
+.hdr.is-top{background:transparent;color:var(--on-brand);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.hdr.is-top :focus-visible{outline-color:var(--on-brand)}
+.hdr-in{display:flex;align-items:center;gap:12px;height:72px}
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand-mark{width:38px;height:38px}
+.brand-word{width:90px;height:21.3px;fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.nav{display:none;gap:24px;margin-right:8px}
+.nav a{font-weight:600;font-size:.9375rem;text-decoration:none;opacity:.86;transition:opacity .15s}
+.nav a:hover{opacity:1}
+.theme{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;opacity:.9}
+.theme .icon{width:20px;height:20px}
+.theme .i-sun{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme .i-sun{display:block}
+  :root:not([data-theme="light"]) .theme .i-moon{display:none}
+}
+:root[data-theme="dark"] .theme .i-sun{display:block}
+:root[data-theme="dark"] .theme .i-moon{display:none}
+.hdr .btn-line{display:none}
+.hdr.is-top .btn-blue{background:var(--on-brand);color:var(--brand)}
+@media (min-width:640px){.hdr .btn-line{display:inline-flex}}
+@media (min-width:1080px){.nav{display:flex}}
+
+/* ---------- fotos ---------- */
+.ph{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(135deg,var(--photo-bg),var(--photo-bg-2))}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;margin-top:-72px;padding-top:72px;color:var(--on-brand);background:linear-gradient(120deg,var(--brand-deep),var(--brand))}
+.hero :focus-visible{outline-color:var(--on-brand)}
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;display:block}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,var(--veil-a) 20%,var(--veil-b))}
+.hero-in{display:grid;gap:clamp(28px,4vw,56px);align-items:center;padding-block:clamp(36px,6vw,84px) clamp(44px,6vw,92px)}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1{font:700 clamp(2rem,4.7vw,3.5rem)/1.08 var(--f-display);letter-spacing:-.02em;text-wrap:balance}
+.hero-copy>p{color:var(--on-brand-muted);font-size:clamp(1.02rem,1.5vw,1.15rem);max-width:34rem}
+.hero-copy .btn{align-self:flex-start}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:35rem;margin-top:6px;border:1px solid var(--on-brand-line);border-radius:16px;background:var(--on-brand-glass);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.stats li{padding:14px clamp(10px,2vw,18px);min-width:0}
+.stats li+li{border-left:1px solid var(--on-brand-line)}
+.stats b{display:block;font:700 clamp(1.45rem,3.2vw,2rem)/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.stats span{display:block;font-size:.8125rem;line-height:1.35;color:var(--on-brand-muted);margin-top:3px}
+@media (min-width:980px){.hero-in{grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr)}}
+
+/* cartão de cotação */
+.qcard{display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface);color:var(--ink);border-radius:22px;padding:clamp(20px,2.6vw,28px);box-shadow:0 30px 60px -30px rgba(3,10,50,.7)}
+.qcard :focus-visible{outline-color:var(--focus)}
+.qcard-head{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center}
+.qcard-head svg{width:44px;height:44px}
+.qcard-head h2{font:700 1.3rem/1.15 var(--f-display)}
+.qcard-head p{color:var(--muted);font-size:.875rem;margin-top:2px}
+.field{display:block;min-width:0}
+.field span{display:block;font:600 .8125rem/1.2 var(--f-body);color:var(--muted);margin-bottom:6px}
+.field input,.field select{width:100%;min-height:48px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:500 1rem/1.2 var(--f-body)}
+.field input::placeholder{color:var(--muted);opacity:.85}
+.field input:focus,.field select:focus{outline:none;border-color:var(--blue-text)}
+.row2{display:grid;gap:14px}
+.fine{font-size:.8125rem;line-height:1.45;color:var(--muted)}
+@media (min-width:480px){.row2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- seções ---------- */
+.sec{padding-block:clamp(52px,8vw,96px)}
+.sec-alt{background:var(--bg-2)}
+.sec-brand{background:var(--brand);color:var(--on-brand)}
+.sec-brand :focus-visible{outline-color:var(--on-brand)}
+.sec-brand .eyebrow{color:var(--on-brand-muted)}
+.sec-brand .sub,.sec-brand .note{color:var(--on-brand-muted)}
+.head{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:44rem;margin:0 auto clamp(26px,4vw,46px);text-align:center}
+.card{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--shadow)}
+.sec-brand .card{border-color:transparent}
+
+/* parceiras */
+.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.logos li{display:grid;place-items:center;min-height:118px;padding:18px 16px;border-radius:var(--r-card);border:1px solid var(--line);background:var(--logo-bg);color:var(--logo-ink);box-shadow:var(--shadow)}
+.logos img{display:block;width:auto;height:auto;max-width:min(100%,180px);max-height:60px}
+.logos img.sq{max-height:86px}
+.logos .name{font:700 1.5rem/1 var(--f-display);letter-spacing:-.01em}
+@media (min-width:760px){.logos{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* veículos */
+.g3{display:grid;gap:18px}
+.vcard{display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.vcard .ph{aspect-ratio:16 / 10}
+.vcard-body{display:flex;flex-direction:column;gap:8px;padding:20px 22px 22px;flex:1}
+.vcard h3{font:700 1.2rem/1.2 var(--f-display)}
+.vcard p{color:var(--muted);font-size:.9375rem;line-height:1.5}
+.more{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;min-height:44px;margin-top:auto;font-weight:700;font-size:.9375rem;color:var(--blue-text);text-decoration:none}
+.more .icon{width:18px;height:18px;stroke-width:2.2;transition:transform .16s ease}
+.more:hover .icon{transform:translateX(3px)}
+@media (min-width:760px){.g3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* diferenciais */
+.g6{display:grid;gap:14px}
+.dcard{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:20px}
+.dcard .tile{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--blue);color:var(--on-brand)}
+.dcard h3{font:700 1.0625rem/1.25 var(--f-body)}
+.dcard p{color:var(--muted);font-size:.9rem;line-height:1.5;margin-top:3px}
+@media (min-width:620px){.g6{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.g6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* metades com foto */
+.split{display:grid;gap:clamp(26px,5vw,64px);align-items:center}
+.split .ph{aspect-ratio:4 / 3;border-radius:24px;box-shadow:var(--shadow)}
+.split-text{display:flex;flex-direction:column;gap:18px;min-width:0}
+.split-text .btn{align-self:flex-start}
+.checks{display:grid;gap:12px 22px}
+.checks li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;font-weight:600;line-height:1.4}
+.checks li span{font-weight:400;color:var(--muted)}
+.checks .icon{color:var(--blue-text);stroke-width:2.2;margin-top:1px}
+.ph-seller img{object-position:45% 50%}
+@media (min-width:560px){.checks.two{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:900px){.split{grid-template-columns:repeat(2,minmax(0,1fr))}.split .ph{aspect-ratio:1.12}.split.flip .ph{order:2}}
+
+/* passos */
+.scard{display:flex;flex-direction:column;gap:8px;padding:24px;min-width:0}
+.scard b{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--blue);color:var(--on-brand);font:700 1.15rem/1 var(--f-display);margin-bottom:6px}
+.scard h3{font:700 1.15rem/1.25 var(--f-display)}
+.scard p{color:var(--muted);font-size:.9375rem}
+
+/* depoimentos */
+.depos{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.depo{display:flex;flex-direction:column;gap:16px;flex:0 0 min(84%,340px);scroll-snap-align:start;min-width:0;padding:22px}
+.tag{align-self:flex-start;padding:5px 9px;border-radius:6px;background:var(--blue-soft);color:var(--blue-text);font:700 .6875rem/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase}
+.depo-text{color:var(--muted);line-height:1.55}
+.depo-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:4px}
+.avatar{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;border:1.5px dashed var(--line);color:var(--muted)}
+.avatar .icon{width:22px;height:22px}
+img.avatar{display:block;object-fit:cover;border-style:solid}
+.depo-who b{display:block;font-weight:700;line-height:1.3}
+.depo-who span{display:block;font-size:.875rem;color:var(--muted)}
+.team{display:flex;flex-direction:column;gap:18px;margin-top:clamp(36px,5vw,60px)}
+.team-head{display:flex;flex-direction:column;gap:8px}
+@media (min-width:900px){.depos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;padding-bottom:0}}
+
+/* loja */
+.stack{display:grid;gap:clamp(20px,3vw,32px)}
+.store{display:grid;gap:16px;align-items:center;padding:clamp(20px,3.5vw,32px)}
+.store .tile{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--blue);color:var(--on-brand)}
+.store-text{display:flex;flex-direction:column;gap:8px;min-width:0}
+.store address{color:var(--muted);line-height:1.55}
+.store .btn-line{color:var(--ink);border-color:var(--line)}
+@media (min-width:760px){.store{grid-template-columns:auto minmax(0,1fr) auto;gap:24px}}
+
+/* dúvidas */
+.faq-sec{position:relative;isolation:isolate;overflow:hidden}
+.faq-deco{position:absolute;z-index:-1;right:-70px;top:30px;width:min(46vw,460px);height:auto;color:var(--blue-soft);fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.faq{display:grid;gap:12px;max-width:52rem;margin-inline:auto}
+.faq details{padding:0 22px}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding-block:14px;cursor:pointer;list-style:none;font-weight:700;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:10px;height:10px;border-right:2.5px solid var(--blue-text);border-bottom:2.5px solid var(--blue-text);transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s ease}
+.faq details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.faq details p{color:var(--muted);padding-bottom:20px;max-width:64ch}
+.faq details a{color:var(--blue-text);font-weight:600}
+
+/* chamada final */
+.cta{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;background:linear-gradient(120deg,var(--brand-deep),var(--brand));color:var(--on-brand);border-radius:28px;padding:clamp(28px,5.5vw,64px)}
+.cta :focus-visible{outline-color:var(--on-brand)}
+.cta .sub{color:var(--on-brand-muted);max-width:36rem}
+.cta-phone{font:700 1.35rem/1.2 var(--f-display);font-variant-numeric:tabular-nums;user-select:all}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+/* ---------- rodapé ---------- */
+.foot{background:var(--foot);color:var(--on-foot);padding-block:clamp(40px,6vw,64px) calc(96px + env(safe-area-inset-bottom,0px))}
+.foot :focus-visible{outline-color:var(--on-foot)}
+.foot-grid{display:grid;gap:32px}
+.foot h3{font:700 .8125rem/1.3 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--on-foot-muted);margin-bottom:12px}
+.foot p,.foot li,.foot address{color:var(--on-foot-muted);font-size:.9375rem;line-height:1.6}
+.foot li a{display:inline-flex;align-items:center;min-height:32px;text-decoration:none}
+.foot li a:hover{color:var(--on-foot)}
+.foot-brand{display:flex;flex-direction:column;gap:16px;max-width:28rem}
+.foot .brand{margin:0;color:var(--on-foot)}
+.foot-end{margin-top:32px;padding-top:20px;border-top:1px solid var(--foot-line);font-size:.875rem;color:var(--on-foot-muted)}
+@media (min-width:620px){.foot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:980px){.foot-grid{grid-template-columns:1.5fr 1fr .8fr .9fr}}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;box-shadow:var(--shadow)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.hdr,.more .icon{transition:none}}
+</style>
+</head>
+<body>
+<script>
+/* aplica o tema escolhido antes de pintar a página */
+try{var t=localStorage.getItem('nexus-tema');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}
+document.documentElement.lang='pt-BR';
+</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3M12 15v1.5"/></symbol>
+    <symbol id="i-impact" viewBox="0 0 24 24"><path d="M12 3l1.8 4.6 4.6-2-2 4.6L21 12l-4.6 1.8 2 4.6-4.6-2L12 21l-1.8-4.6-4.6 2 2-4.6L3 12l4.6-1.8-2-4.6 4.6 2z"/></symbol>
+    <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7.5 16A4 4 0 0 1 7 8a5.5 5.5 0 0 1 10.6 1.5 3.3 3.3 0 0 1 .4 6.4"/><path d="M12.8 11.5L10 16h3.6L11.4 20.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.2 3-5 6-5s5.4 1.8 6 5M16 5.6a3.2 3.2 0 0 1 0 5.8M18 14.9c1.6.8 2.6 2.3 3 4.6"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c.7-3.6 3.5-5.6 7-5.6s6.3 2 7 5.6"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="4"/><path d="M11 12.5L19.5 4M16 7.5l2.5 2.5M13.5 10l2 2"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><path d="M6 6.5h12l3 11H3z"/><path d="M9.5 10l-1.6 4M13.5 10l-1 2.6"/></symbol>
+    <symbol id="i-buoy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
+    <symbol id="i-compare" viewBox="0 0 24 24"><path d="M3.5 6h7M3.5 12h7M3.5 18h7M14.5 6l2 2L20.5 4M14.5 12l2 2 4-4M14.5 18l2 2 4-4"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="5" r="2.5"/><path d="M8 18h6a3.5 3.5 0 0 0 0-7h-4a3 3 0 0 1 0-6h6"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V5a1.5 1.5 0 0 1 1.5-1.5h7.3a1.5 1.5 0 0 1 1 .4l7 7a1.5 1.5 0 0 1 0 2.2l-7.2 7.2a1.5 1.5 0 0 1-2.200 0l-7-7a1.5 1.5 0 0 1-.4-1z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.500 2.800v5.700c0 4.500-3 7.800-7.500 9.500-4.500-1.700-7.500-5-7.500-9.500V5.800z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.500s7-6.200 7-11.500a7 7 0 0 0-14 0c0 5.300 7 11.500 7 11.500z"/><circle cx="12" cy="10" r="2.600"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></symbol>
+    <symbol id="nx-mark" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="#1546E8"/><path d="M15 33.5V15l18 18V14.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/><circle cx="33" cy="14" r="4.2" fill="#1546E8" stroke="#fff" stroke-width="3"/></symbol>
+    <symbol id="nx-word" viewBox="-3 -3 127 30"><path d="M0 24V0l17 24V0M43 0H26v24h17M26 12h14M52 0l17 24M69 0L52 24M78 0v15.5a8.5 8.5 0 0 0 17 0V0M120 4.5C118 1.5 115.5 0 112 0c-4.5 0-7.5 2.6-7.5 6.3 0 8.4 16.5 3.6 16.5 11.6 0 3.7-3.4 6.1-8 6.1-3.8 0-6.8-1.6-8.5-4.5"/></symbol>
+  </defs>
+</svg>
+
+<!-- FAIXA DE CIMA: contato e alternância entre as duas opções de layout.
+     Quando a família escolher, apague o <nav class="switch">. -->
+<div class="bar">
+  <div class="wrap bar-in">
+    <span class="bar-note">WhatsApp (34) 99300-8884 · Loja em Uberlândia: Av. Rondon Pacheco, 2300</span>
+    <nav class="switch" aria-label="Opções de layout">
+      <span>Layout</span>
+      <a href="index.html">Opção 1</a>
+      <a class="on" aria-current="page" href="opcao-2.html">Opção 2</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hdr" id="topo">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#inicio" aria-label="Nexus, início">
+      <svg class="brand-mark" aria-hidden="true"><use href="#nx-mark"/></svg>
+      <svg class="brand-word" aria-hidden="true"><use href="#nx-word"/></svg>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#parceiras">Parceiras</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#coberturas">Coberturas</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <button class="theme" id="tema" type="button" aria-label="Alternar entre tema claro e escuro">
+      <svg class="icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+    </button>
+    <a class="btn btn-line btn-sm" href="#consultor">Seja consultor</a>
+    <a class="btn btn-blue btn-sm" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">Cotar agora</a>
+  </div>
+</header>
+<script>document.getElementById('topo').classList.add('is-top')</script>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1760068670115-6d4e415b0c7a?auto=format&amp;fit=crop&amp;q=70&amp;w=1200" srcset="https://images.unsplash.com/photo-1760068670115-6d4e415b0c7a?auto=format&amp;fit=crop&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1760068670115-6d4e415b0c7a?auto=format&amp;fit=crop&amp;q=70&amp;w=1200 1200w, https://images.unsplash.com/photo-1760068670115-6d4e415b0c7a?auto=format&amp;fit=crop&amp;q=70&amp;w=1800 1800w" sizes="100vw" alt="" decoding="async"></div>
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <span class="pill">Consultoria em proteção veicular</span>
+        <h1>Proteção para o seu veículo com o melhor preço entre as parceiras.</h1>
+        <p>A Nexus cota o seu carro, a sua moto ou o seu caminhão em várias empresas de proteção veicular e mostra a proposta que mais vale a pena.</p>
+        <a class="btn btn-white" id="hero-cta" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Fazer cotação
+        </a>
+        <ul class="stats">
+          <li><b>4</b><span>parceiras para comparar</span></li>
+          <li><b>24h</b><span>de assistência nos planos</span></li>
+          <li><b>R$ 0</b><span>para fazer a cotação</span></li>
+        </ul>
+      </div>
+
+      <form class="qcard" id="cotacao" novalidate>
+        <div class="qcard-head">
+          <svg aria-hidden="true"><use href="#nx-mark"/></svg>
+          <div>
+            <h2>Solicite uma cotação</h2>
+            <p>Preencha e continue a conversa pelo WhatsApp.</p>
+          </div>
+        </div>
+        <label class="field" for="q-nome"><span>Seu nome</span>
+          <input id="q-nome" type="text" placeholder="Nome completo" autocomplete="name">
+        </label>
+        <div class="row2">
+          <label class="field" for="q-tipo"><span>Tipo de veículo</span>
+            <select id="q-tipo">
+              <option value="Carro">Carro</option>
+              <option value="Moto">Moto</option>
+              <option value="Caminhão">Caminhão</option>
+              <option value="Van ou utilitário">Van ou utilitário</option>
+            </select>
+          </label>
+          <label class="field" for="q-modelo"><span>Modelo e ano</span>
+            <input id="q-modelo" type="text" placeholder="Ex.: Onix 2020" autocomplete="off">
+          </label>
+        </div>
+        <label class="field" for="q-cidade"><span>Cidade</span>
+          <input id="q-cidade" type="text" placeholder="Onde o veículo fica" autocomplete="address-level2">
+        </label>
+        <a class="btn btn-blue" id="q-enviar" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">
+          Enviar no WhatsApp<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <p class="fine">Abre uma conversa com um consultor da Nexus, já com os dados acima. Este site não guarda nenhuma informação sua.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- PARCEIRAS -->
+  <section class="sec" id="parceiras">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Nossas parceiras</p>
+        <h2 class="h2">Quatro empresas de proteção em um só atendimento</h2>
+      </div>
+      <ul class="logos">
+        <li><img src="assets/parceiras/premium-clube.png" alt="Premium Clube" width="640" height="148" loading="lazy"></li>
+        <li><img src="assets/parceiras/autobem-brasil.png" alt="Autobem Brasil" width="640" height="197" loading="lazy"></li>
+        <li><img class="sq" src="assets/parceiras/grupo-certo.png" alt="Grupo Certo Proteção Veicular" width="150" height="150" loading="lazy"></li>
+        <li><span class="name">Coonecta</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- VEÍCULOS -->
+  <section class="sec sec-alt" id="veiculos">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Para todo tipo de veículo</p>
+        <h2 class="h2">Um portfólio completo para você</h2>
+        <p class="sub">Seja qual for o seu veículo, a Nexus tem parceiras com planos para ele.</p>
+      </div>
+      <ul class="g3">
+        <li class="card vcard">
+          <figure class="ph"><img src="https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1651446404130-104e68e2f39a?auto=format&amp;fit=crop&amp;q=70&amp;w=1200 1200w" sizes="(min-width:760px) 380px, 100vw" alt="Carro azul em uma estrada" loading="lazy" decoding="async"></figure>
+          <div class="vcard-body">
+            <h3>Carros</h3>
+            <p>Do popular ao SUV, com planos de várias parceiras para comparar.</p>
+            <a class="more" href="#cotacao" data-tipo="Carro">Cotar meu carro<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </li>
+        <li class="card vcard">
+          <figure class="ph"><img src="https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1598548841213-9cdbcdf8ec47?auto=format&amp;fit=crop&amp;q=70&amp;w=1200 1200w" sizes="(min-width:760px) 380px, 100vw" alt="Motociclista pilotando em uma estrada" loading="lazy" decoding="async"></figure>
+          <div class="vcard-body">
+            <h3>Motos</h3>
+            <p>Proteção para a moto do trabalho e para a moto do passeio.</p>
+            <a class="more" href="#cotacao" data-tipo="Moto">Cotar minha moto<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </li>
+        <li class="card vcard">
+          <figure class="ph"><img src="https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1670509295484-df0c2512fec4?auto=format&amp;fit=crop&amp;q=70&amp;w=1200 1200w" sizes="(min-width:760px) 380px, 100vw" alt="Caminhão branco rodando em uma estrada" loading="lazy" decoding="async"></figure>
+          <div class="vcard-body">
+            <h3>Caminhões</h3>
+            <p>Planos para veículos pesados, com parceira especializada no segmento.</p>
+            <a class="more" href="#cotacao" data-tipo="Caminhão">Cotar meu caminhão<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="sec sec-brand" id="diferenciais">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Diferenciais</p>
+        <h2 class="h2">Por que cotar com a Nexus?</h2>
+        <p class="sub">Mais parceiras para comparar, melhor preço para você.</p>
+      </div>
+      <ul class="g6">
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-compare"/></svg></span>
+          <div><h3>Portfólio amplo</h3><p>Premium Clube, Autobem Brasil, Grupo Certo e Coonecta em uma só cotação.</p></div>
+        </li>
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></span>
+          <div><h3>O melhor preço entre as opções</h3><p>O consultor compara plano por plano e mostra onde sai mais em conta.</p></div>
+        </li>
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <div><h3>Parceiras cadastradas na Susep</h3><p>A Nexus trabalha com empresas cadastradas no órgão federal que supervisiona o setor.</p></div>
+        </li>
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg></span>
+          <div><h3>Ao seu lado depois da venda</h3><p>Sempre que você precisar, o consultor fala com a parceira por você.</p></div>
+        </li>
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+          <div><h3>Atendimento humano</h3><p>Você conversa com um consultor pelo WhatsApp, do começo ao fim.</p></div>
+        </li>
+        <li class="card dcard">
+          <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+          <div><h3>Loja em Uberlândia</h3><p>Prefere conversar pessoalmente? A loja fica na Av. Rondon Pacheco.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COBERTURAS -->
+  <section class="sec" id="coberturas">
+    <div class="wrap split">
+      <figure class="ph"><img src="https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1000" srcset="https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1000 1000w, https://images.unsplash.com/photo-1756142007128-f431ede241cc?auto=format&amp;fit=crop&amp;q=70&amp;w=1400 1400w" sizes="(min-width:900px) 560px, 100vw" alt="Pai e filhas tirando uma selfie ao lado do carro" loading="lazy" decoding="async"></figure>
+      <div class="split-text">
+        <span class="pill">Coberturas</span>
+        <h2 class="h2">O que os planos podem cobrir</h2>
+        <p class="sub">Cada parceira monta os planos de um jeito. Estes são os itens mais procurados. O consultor mostra o que entra em cada proposta.</p>
+        <ul class="checks two">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Roubo e furto</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Colisão</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Assistência 24h</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Carro reserva</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Danos a terceiros</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Incêndio e eventos da natureza</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Vidros, faróis e retrovisores</li>
+        </ul>
+        <p class="note">Coberturas, valores e condições variam conforme o plano e a parceira escolhida.</p>
+        <a class="btn btn-blue" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Fazer cotação
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="sec sec-alt" id="como-funciona">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Como funciona</p>
+        <h2 class="h2">Do primeiro contato à proteção ativa</h2>
+      </div>
+      <ol class="g3">
+        <li class="card scard"><b>1</b><h3>Você chama no WhatsApp</h3><p>Conte qual é o veículo, o ano e a cidade. Leva um minuto.</p></li>
+        <li class="card scard"><b>2</b><h3>A Nexus cota nas parceiras</h3><p>O consultor consulta os planos disponíveis e envia as opções com preço e coberturas.</p></li>
+        <li class="card scard"><b>3</b><h3>Você escolhe e ativa</h3><p>Com o plano escolhido, o consultor cuida da vistoria e da adesão com a parceira.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS DE CLIENTES -->
+  <!-- Cartões de modelo. Para publicar um depoimento real: troque o texto, o nome e a linha
+       de baixo, apague o <span class="tag">Exemplo</span> e, se tiver foto, troque o
+       <span class="avatar">…</span> por <img class="avatar" src="assets/img/nome.jpg" alt="">. -->
+  <section class="sec sec-brand" id="depoimentos">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Depoimentos de clientes</p>
+        <h2 class="h2">O que dizem os clientes da Nexus</h2>
+        <p class="note">Estes cartões são modelos. Os depoimentos e as fotos reais entram aqui antes da divulgação.</p>
+      </div>
+      <ul class="depos">
+        <li class="card depo">
+          <span class="tag">Exemplo</span>
+          <p class="depo-text">Texto de exemplo. Aqui entra o relato de um cliente sobre a cotação: como foi o atendimento e por que escolheu o plano.</p>
+          <div class="depo-who">
+            <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+            <div><b>Nome do cliente</b><span>Carro · Cidade</span></div>
+          </div>
+        </li>
+        <li class="card depo">
+          <span class="tag">Exemplo</span>
+          <p class="depo-text">Texto de exemplo. Aqui entra o relato de um cliente que precisou da assistência ou da proteção e conta como foi resolvido.</p>
+          <div class="depo-who">
+            <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+            <div><b>Nome do cliente</b><span>Moto · Cidade</span></div>
+          </div>
+        </li>
+        <li class="card depo">
+          <span class="tag">Exemplo</span>
+          <p class="depo-text">Texto de exemplo. Aqui entra o relato de um cliente com caminhão ou utilitário, para mostrar que a Nexus atende todo tipo de veículo.</p>
+          <div class="depo-who">
+            <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+            <div><b>Nome do cliente</b><span>Caminhão · Cidade</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONSULTOR + DEPOIMENTOS DE COLABORADORES -->
+  <section class="sec" id="consultor">
+    <div class="wrap">
+      <div class="split flip">
+        <figure class="ph ph-seller"><img src="https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1000" srcset="https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1000 1000w, https://images.unsplash.com/photo-1758521961483-30f5908b9c93?auto=format&amp;fit=crop&amp;q=70&amp;w=1400 1400w" sizes="(min-width:900px) 560px, 100vw" alt="Homem sorrindo enquanto usa o celular dentro do carro" loading="lazy" decoding="async"></figure>
+        <div class="split-text">
+          <span class="pill">Para quem vende</span>
+          <h2 class="h2">Venda proteção veicular com várias marcas na mão.</h2>
+          <p class="sub">Quando o plano de uma parceira não encaixa no cliente, você oferece o de outra. Mais opções na mesa, mais vendas fechadas.</p>
+          <ul class="checks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div>Portfólio completo <span>com quatro parceiras para oferecer</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div>Comissão por venda <span>a cada adesão que você fecha</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div>Suporte do time Nexus <span>para cotar, tirar dúvidas e fechar</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div>Trabalho pelo celular <span>de onde estiver, no seu horário</span></div></li>
+          </ul>
+          <a class="btn btn-blue" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20saber%20como%20ser%20consultor(a)." target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Quero ser consultor
+          </a>
+        </div>
+      </div>
+
+      <div class="team" id="depoimentos-consultores">
+        <div class="team-head">
+          <p class="eyebrow">Depoimentos de colaboradores</p>
+          <h3 class="h3">Quem já vende com a Nexus</h3>
+          <p class="note">Estes cartões são modelos. Os relatos reais da equipe entram aqui antes da divulgação.</p>
+        </div>
+        <ul class="depos">
+          <li class="card depo">
+            <span class="tag">Exemplo</span>
+            <p class="depo-text">Texto de exemplo. Aqui entra o relato de um consultor sobre como é vender tendo várias parceiras para oferecer.</p>
+            <div class="depo-who">
+              <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+              <div><b>Nome do consultor</b><span>Consultor · Cidade</span></div>
+            </div>
+          </li>
+          <li class="card depo">
+            <span class="tag">Exemplo</span>
+            <p class="depo-text">Texto de exemplo. Aqui entra o relato de um consultor sobre o suporte da equipe e a rotina de trabalho.</p>
+            <div class="depo-who">
+              <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+              <div><b>Nome do consultor</b><span>Consultor · Cidade</span></div>
+            </div>
+          </li>
+          <li class="card depo">
+            <span class="tag">Exemplo</span>
+            <p class="depo-text">Texto de exemplo. Aqui entra o relato de um consultor sobre como começou e o que mudou na renda dele.</p>
+            <div class="depo-who">
+              <span class="avatar" aria-hidden="true"><svg class="icon"><use href="#i-user"/></svg></span>
+              <div><b>Nome do consultor</b><span>Consultor · Cidade</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section class="sec sec-alt faq-sec" id="duvidas">
+    <svg class="faq-deco" viewBox="6 6 36 36" aria-hidden="true"><path d="M15 33.5V15l18 18V14.5"/><circle cx="15" cy="34" r="4.2"/><circle cx="33" cy="14" r="4.2"/></svg>
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Dúvidas comuns</p>
+        <h2 class="h2">Perguntas frequentes</h2>
+        <p class="sub">O que as pessoas mais perguntam antes de pedir a cotação.</p>
+      </div>
+      <div class="faq">
+        <details class="card">
+        <summary>A Nexus é a empresa que protege o meu veículo?</summary>
+        <p>Não. A Nexus faz a consultoria e a venda. A proteção é prestada pela parceira que você escolher, e a adesão é feita com ela. A Nexus acompanha você na cotação e na contratação.</p>
+        </details>
+        <details class="card">
+        <summary>Proteção veicular é confiável? As parceiras são regularizadas?</summary>
+        <p>Desde 2025, a Lei Complementar 213 colocou as associações de proteção veicular sob supervisão da Susep, o órgão federal que fiscaliza o setor de seguros. A Nexus trabalha com parceiras cadastradas na Susep. Antes de você assinar, o consultor informa o CNPJ e o regulamento da parceira, e você pode conferir a situação dela na <a href="https://www2.susep.gov.br/safe/autorizacoes/app/" target="_blank" rel="noopener">consulta pública da Susep</a>.</p>
+        </details>
+        <details class="card">
+        <summary>Proteção veicular é a mesma coisa que seguro?</summary>
+        <p>Não. A proteção veicular é oferecida por associações e cooperativas, em que os associados dividem entre si os custos dos eventos. As regras ficam no regulamento de cada parceira, e o consultor explica tudo antes de você decidir.</p>
+        </details>
+        <details class="card">
+        <summary>A cotação tem custo?</summary>
+        <p>Não. A cotação é gratuita e você não assume nenhum compromisso ao pedir.</p>
+        </details>
+        <details class="card">
+        <summary>Que tipos de veículo vocês atendem?</summary>
+        <p>Carros, motos, caminhões, vans e utilitários, inclusive veículos de táxi e de aplicativo. A disponibilidade depende do plano de cada parceira.</p>
+        </details>
+        <details class="card">
+        <summary>Como faço para ser consultor da Nexus?</summary>
+        <p>Chame a gente no WhatsApp pelo botão "Quero ser consultor". A equipe explica como funciona o trabalho, as parceiras e a comissão.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOJA + CHAMADA FINAL -->
+  <section class="sec" id="contato">
+    <div class="wrap stack">
+      <div class="card store" id="loja">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <div class="store-text">
+          <p class="eyebrow">Loja em Uberlândia</p>
+          <h2 class="h3">Faça uma visita à nossa loja</h2>
+          <address>Av. Rondon Pacheco, 2300, sala 36, piso 1<br>Saraiva, Uberlândia - MG, 38408-404</address>
+        </div>
+        <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Rondon+Pacheco%2C+2300+-+Saraiva%2C+Uberl%C3%A2ndia+-+MG%2C+38408-404" target="_blank" rel="noopener">Como chegar<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cta">
+        <h2 class="h2">Vamos cotar o seu veículo?</h2>
+        <p class="sub">Fale com um consultor da Nexus pelo WhatsApp e receba as opções das parceiras.</p>
+        <p class="cta-phone">(34) 99300-8884</p>
+        <div class="cta-row">
+          <a class="btn btn-white" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Fazer cotação
+          </a>
+          <a class="btn btn-line" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20saber%20como%20ser%20consultor(a)." target="_blank" rel="noopener">Quero ser consultor</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#inicio" aria-label="Nexus, voltar ao início">
+          <svg class="brand-mark" aria-hidden="true"><use href="#nx-mark"/></svg>
+          <svg class="brand-word" aria-hidden="true"><use href="#nx-word"/></svg>
+        </a>
+        <p>A Nexus reúne empresas de proteção veicular cadastradas na Susep em um só atendimento. Você compara, escolhe a melhor proposta, e o consultor da Nexus fica ao seu lado da cotação ao pós-venda, em qualquer situação.</p>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li>WhatsApp (34) 99300-8884</li>
+          <li><address>Av. Rondon Pacheco, 2300, sala 36, piso 1<br>Saraiva, Uberlândia - MG, 38408-404</address></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="#parceiras">Parceiras</a></li>
+          <li><a href="#coberturas">Coberturas</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#consultor">Seja consultor</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Parceiras</h3>
+        <ul>
+          <li>Premium Clube</li>
+          <li>Autobem Brasil</li>
+          <li>Grupo Certo</li>
+          <li>Coonecta</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-end">© 2026 Nexus Proteção Veicular</p>
+  </div>
+</footer>
+
+<a class="btn btn-blue fab" id="fab" href="https://wa.me/5534993008884?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Nexus%20e%20quero%20fazer%20uma%20cota%C3%A7%C3%A3o%20de%20prote%C3%A7%C3%A3o%20veicular." target="_blank" rel="noopener" aria-label="Falar com um consultor no WhatsApp">
+  <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp
+</a>
+
+<script>
+(function(){
+  var WHATSAPP='5534993008884';            /* DDI + DDD + número */
+  var root=document.documentElement;
+
+  /* fotos: se uma imagem não carregar, o quadro fica com o fundo azul-escuro */
+  Array.prototype.forEach.call(document.querySelectorAll('.ph img,.hero-bg img'),function(im){
+    function sumir(){im.hidden=true}
+    im.addEventListener('error',sumir);
+    if(im.loading!=='lazy'&&im.complete&&im.naturalWidth===0)sumir();
+  });
+
+  /* cabeçalho: transparente sobre o hero, sólido depois de rolar */
+  var hdr=document.getElementById('topo');
+  function topo(){hdr.classList.toggle('is-top',window.scrollY<24)}
+  window.addEventListener('scroll',topo,{passive:true});
+  topo();
+
+  /* tema claro / escuro */
+  function temaAtual(){
+    var t=root.getAttribute('data-theme');
+    if(t==='dark'||t==='light')return t;
+    return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  document.getElementById('tema').addEventListener('click',function(){
+    var novo=temaAtual()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',novo);
+    try{localStorage.setItem('nexus-tema',novo)}catch(e){}
+  });
+
+  /* cotação: monta a mensagem do WhatsApp com o que a pessoa preencheu */
+  var form=document.getElementById('cotacao');
+  var nome=document.getElementById('q-nome');
+  var tipo=document.getElementById('q-tipo');
+  var modelo=document.getElementById('q-modelo');
+  var cidade=document.getElementById('q-cidade');
+  var enviar=document.getElementById('q-enviar');
+  function montar(){
+    var n=nome.value.trim(), m=modelo.value.trim(), c=cidade.value.trim();
+    var texto='Olá! Vim pelo site da Nexus e quero uma cotação de proteção veicular.\n'+(n?'\nNome: '+n:'')+'\nVeículo: '+tipo.value+(m?' - '+m:'')+(c?'\nCidade: '+c:'');
+    enviar.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(texto);
+  }
+  form.addEventListener('input',montar);
+  form.addEventListener('change',montar);
+  form.addEventListener('submit',function(e){e.preventDefault();montar();enviar.click()});
+  montar();
+
+  /* "Cotar meu carro / moto / caminhão": já escolhe o tipo no formulário */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tipo]'),function(a){
+    a.addEventListener('click',function(){tipo.value=a.getAttribute('data-tipo');montar()});
+  });
+
+  /* botão flutuante: só aparece depois que o botão do topo sai da tela */
+  var fab=document.getElementById('fab');
+  var alvo=document.getElementById('hero-cta');
+  if('IntersectionObserver' in window&&alvo){
+    fab.hidden=true;
+    new IntersectionObserver(function(es){fab.hidden=es[0].isIntersecting}).observe(alvo);
+  }
+})();
+</script>
+</body>
+</html>
