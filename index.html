@@ -28,6 +28,7 @@
   --focus:#0B1226; --shadow:0 16px 36px -20px rgba(11,18,38,.4);
   /* sobre azul e sobre foto: iguais nos dois temas */
   --on-blue:#FFFFFF; --on-blue-muted:#D5DFFF; --on-blue-line:rgba(255,255,255,.42); --on-blue-glass:rgba(255,255,255,.12);
+  --logo-bg:#FFFFFF; --logo-ink:#55607A; --logo-line:#DDE3EF;
   --field-bg:#FFFFFF; --field-ink:#0B1226; --field-ph:#6A7590;
   --photo-bg:#131D45; --photo-bg-2:#0B1226; --on-photo:#FFFFFF; --scrim:rgba(5,9,25,.8); --scrim-0:rgba(5,9,25,0);
   --f-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
@@ -172,9 +173,11 @@ main{display:flex;flex-direction:column;gap:clamp(56px,8vw,104px);padding-block:
 
 /* ---------- parceiras ---------- */
 .partners{display:flex;flex-direction:column;gap:16px}
-.partners ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.partners li{display:grid;place-items:center;min-height:84px;padding:14px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--f-display);font-stretch:104%;font-weight:800;font-size:clamp(1rem,2vw,1.35rem);letter-spacing:-.015em;line-height:1.1;text-align:center}
-.partners li.more{color:var(--muted);font-family:var(--f-body);font-weight:600;font-size:.95rem;letter-spacing:0}
+.partners ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;overflow:hidden;border:1px solid var(--line);border-radius:var(--r-md);background:var(--logo-line)}
+.partners li{display:grid;place-items:center;min-height:124px;padding:18px 16px;background:var(--logo-bg);color:var(--logo-ink)}
+.partners img{display:block;width:auto;height:auto;max-width:min(100%,190px);max-height:64px}
+.partners img.sq{max-height:92px}
+.partners li.more{font-weight:600;font-size:.95rem;text-align:center}
 @media (min-width:760px){.partners ul{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* ---------- sobre ---------- */
@@ -408,9 +411,9 @@ document.documentElement.lang='pt-BR';
   <section class="partners" id="parceiras" aria-labelledby="parceiras-t">
     <p class="eyebrow" id="parceiras-t">Parceiras com quem a Nexus trabalha</p>
     <ul>
-      <li>Premium Clube</li>
-      <li>Autobem Brasil</li>
-      <li>Grupo Certo</li>
+      <li><img src="assets/parceiras/premium-clube.png" alt="Premium Clube" width="640" height="148" loading="lazy"></li>
+      <li><img src="assets/parceiras/autobem-brasil.png" alt="Autobem Brasil" width="640" height="197" loading="lazy"></li>
+      <li><img class="sq" src="assets/parceiras/grupo-certo.png" alt="Grupo Certo Proteção Veicular" width="150" height="150" loading="lazy"></li>
       <li class="more">e outras parceiras</li>
     </ul>
   </section>
